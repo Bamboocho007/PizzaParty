@@ -2,8 +2,8 @@
 
 public class Pizza
 {
-    Guid Id { get; set; }
-    string Name { get; set; } = string.Empty;
-    string Description { get; set; } = string.Empty;
-    float Price { get; set; }
+    public Guid PizzaId { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public float Price { get; set; }
 }
