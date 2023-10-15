@@ -1,4 +1,6 @@
 using PizzaParty.DB;
+using PizzaParty.Middlewares;
+using PizzaParty.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PostgresContext>();
+builder.Services.AddScoped<PizzaService>();
+builder.Services.AddTransient<HttpResponseErrorMiddeware>();
 
 var app = builder.Build();
 
@@ -21,6 +25,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<HttpResponseErrorMiddeware>();
 
 app.MapControllers();
 
